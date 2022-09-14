@@ -81,7 +81,7 @@ if has("autocmd")
 endif
 
 nnoremap <leader>p <cmd>Telescope find_files hidden=true<cr>
-nnoremap <leader>gr <cmd>Telescope live_grep theme=get_dropdown<cr>
+nnoremap <leader>g <cmd>Telescope live_grep theme=get_dropdown<cr>
 nnoremap <leader>b <cmd>Telescope buffers theme=get_dropdown<cr>
 nnoremap <leader>h <cmd>Telescope oldfiles theme=get_dropdown<cr>
 nnoremap <leader>gb <cmd>Telescope git_branches theme=get_dropdown<cr>
