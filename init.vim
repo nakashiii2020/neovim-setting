@@ -31,6 +31,7 @@ Jetpack 'haya14busa/vim-asterisk'
 Jetpack 'nvim-neo-tree/neo-tree.nvim'
 Jetpack 'MunifTanjim/nui.nvim'
 Jetpack 'TimUntersberger/neogit'
+Jetpack 'numToStr/Comment.nvim'
 call jetpack#end()
 
 
@@ -131,8 +132,6 @@ require('lualine').setup {
 require("bufferline").setup{}
 
 local sidebar = require("sidebar-nvim")
-local opts = {open = true}
-sidebar.setup(opts)
 
 require'alpha'.setup(require'alpha.themes.startify'.config)
 
@@ -141,6 +140,8 @@ require("scrollbar.handlers.search").setup()
 
 local neogit = require('neogit')
 neogit.setup {}
+
+require('Comment').setup()
 
 EOF
 
