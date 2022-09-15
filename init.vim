@@ -32,7 +32,8 @@ Jetpack 'nvim-neo-tree/neo-tree.nvim'
 Jetpack 'MunifTanjim/nui.nvim'
 Jetpack 'TimUntersberger/neogit'
 Jetpack 'numToStr/Comment.nvim'
-Jetpack 'yoshida-m-3/vim-im-select'
+Jetpack 'folke/tokyonight.nvim', { 'branch': 'main' }
+Jetpack 'bfrg/vim-cpp-modern'
 call jetpack#end()
 
 "設定
@@ -57,8 +58,6 @@ set expandtab           "タブ入力を複数の空白に置き換える
 set tabstop=2           "タブを含むファイルを開いた際, タブを何文字の空白に変換するか
 set shiftwidth=2        "自動インデントで入る空白数
 set softtabstop=0       "キーボードから入るタブの数
-
-set scroll=10           "スクロール行数
 
 let mapleader = "\<Space>"
 let g:im_select_default = 'com.google.inputmethod.Japanese.Roman'
@@ -89,7 +88,8 @@ nnoremap <leader>g <cmd>Telescope live_grep theme=get_dropdown<cr>
 nnoremap <leader>b <cmd>Telescope buffers theme=get_dropdown<cr>
 nnoremap <leader>h <cmd>Telescope oldfiles theme=get_dropdown<cr>
 nnoremap <leader>gb <cmd>Telescope git_branches theme=get_dropdown<cr>
-
+nnoremap <C-u> 10k
+nnoremap <C-d> 10j
 lua <<EOF
 require('lualine').setup {
   options = {
