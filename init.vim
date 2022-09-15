@@ -32,8 +32,8 @@ Jetpack 'nvim-neo-tree/neo-tree.nvim'
 Jetpack 'MunifTanjim/nui.nvim'
 Jetpack 'TimUntersberger/neogit'
 Jetpack 'numToStr/Comment.nvim'
+Jetpack 'yoshida-m-3/vim-im-select'
 call jetpack#end()
-
 
 "設定
 syntax enable
@@ -58,7 +58,10 @@ set tabstop=2           "タブを含むファイルを開いた際, タブを�
 set shiftwidth=2        "自動インデントで入る空白数
 set softtabstop=0       "キーボードから入るタブの数
 
+set scroll=10           "スクロール行数
+
 let mapleader = "\<Space>"
+let g:im_select_default = 'com.google.inputmethod.Japanese.Roman'
 
 if has("autocmd")
   "ファイルタイプの検索を有効にする
@@ -140,6 +143,7 @@ require("scrollbar.handlers.search").setup()
 
 local neogit = require('neogit')
 neogit.setup {}
+
 
 require('Comment').setup()
 
