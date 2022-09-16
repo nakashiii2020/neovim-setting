@@ -34,17 +34,19 @@ Jetpack 'TimUntersberger/neogit'
 Jetpack 'numToStr/Comment.nvim'
 Jetpack 'folke/tokyonight.nvim', { 'branch': 'main' }
 Jetpack 'bfrg/vim-cpp-modern'
+Jetpack 'pangloss/vim-javascript'
 call jetpack#end()
 
 "設定
 syntax enable
-colorscheme nightfox
+colorscheme carbonfox
 set termguicolors
 
 set number
 set mouse=a
 set ignorecase
 set smartcase
+set clipboard+=unnamedplus
 
 """""""""""""""""""""""""
 "      インデント
@@ -61,6 +63,7 @@ set softtabstop=0       "キーボードから入るタブの数
 
 let mapleader = "\<Space>"
 let g:im_select_default = 'com.google.inputmethod.Japanese.Roman'
+
 
 if has("autocmd")
   "ファイルタイプの検索を有効にする
@@ -83,13 +86,25 @@ if has("autocmd")
   autocmd FileType javascript  setlocal sw=4 sts=4 ts=4 et
 endif
 
-nnoremap <leader>p <cmd>Telescope find_files hidden=true<cr>
-nnoremap <leader>g <cmd>Telescope live_grep theme=get_dropdown<cr>
-nnoremap <leader>b <cmd>Telescope buffers theme=get_dropdown<cr>
-nnoremap <leader>h <cmd>Telescope oldfiles theme=get_dropdown<cr>
+
+nnoremap <leader>ff <cmd>Telescope find_files hidden=true<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep theme=get_dropdown<cr>
+nnoremap <leader>fb <cmd>Telescope buffers theme=get_dropdown<cr>
+nnoremap <leader>fh <cmd>Telescope oldfiles theme=get_dropdown<cr>
 nnoremap <leader>gb <cmd>Telescope git_branches theme=get_dropdown<cr>
 nnoremap <C-u> 10k
 nnoremap <C-d> 10j
+nnoremap <silent> <C-j> :bprev<CR>
+nnoremap <silent> <C-k> :bnext<CR>
+noremap j gj
+noremap k gk
+noremap <S-h> ^
+noremap <S-l> $
+noremap <Left> <Nop>
+noremap <Down> <Nop>
+noremap <Up> <Nop>
+noremap <Right> <Nop>
+
 lua <<EOF
 require('lualine').setup {
   options = {
@@ -113,7 +128,7 @@ require('lualine').setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
+    lualine_c = {{'filename', path=1}},
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
@@ -121,7 +136,7 @@ require('lualine').setup {
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
+    -- lualine_c = {'filename', path = 1},
     lualine_x = {'location'},
     lualine_y = {},
     lualine_z = {}
@@ -148,4 +163,5 @@ neogit.setup {}
 require('Comment').setup()
 
 EOF
+
 
