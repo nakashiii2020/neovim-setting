@@ -35,11 +35,15 @@ Jetpack 'numToStr/Comment.nvim'
 Jetpack 'folke/tokyonight.nvim', { 'branch': 'main' }
 Jetpack 'bfrg/vim-cpp-modern'
 Jetpack 'pangloss/vim-javascript'
+Jetpack 'airblade/vim-gitgutter'
+Jetpack 'p00f/nvim-ts-rainbow'
+Jetpack 'norcalli/nvim-colorizer.lua'
+Jetpack 'Mofiqul/vscode.nvim'
 call jetpack#end()
 
 "設定
 syntax enable
-colorscheme carbonfox
+colorscheme vscode
 set termguicolors
 
 set number
@@ -64,7 +68,6 @@ set softtabstop=0       "キーボードから入るタブの数
 let mapleader = "\<Space>"
 let g:im_select_default = 'com.google.inputmethod.Japanese.Roman'
 
-
 if has("autocmd")
   "ファイルタイプの検索を有効にする
   filetype plugin on
@@ -73,6 +76,7 @@ if has("autocmd")
   "sw=shiftwidth, sts=softtabstop, ts=tabstop, et=expandtabの略
   autocmd FileType c           setlocal sw=4 sts=4 ts=4 et
   autocmd FileType html        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType php         setlocal sw=4 sts=4 ts=4 et
   autocmd FileType ruby        setlocal sw=2 sts=2 ts=2 et
   autocmd FileType js          setlocal sw=4 sts=4 ts=4 et
   autocmd FileType zsh         setlocal sw=4 sts=4 ts=4 et
@@ -104,6 +108,7 @@ noremap <Left> <Nop>
 noremap <Down> <Nop>
 noremap <Up> <Nop>
 noremap <Right> <Nop>
+nnoremap U <c-r>
 
 lua <<EOF
 require('lualine').setup {
@@ -162,6 +167,35 @@ neogit.setup {}
 
 require('Comment').setup()
 
+
+require("nvim-treesitter.configs").setup {
+  highlight = {
+      -- ...
+  },
+  -- ...
+  rainbow = {
+    enable = true,
+    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+    -- colors = {}, -- table of hex strings
+    -- termcolors = {} -- table of colour name strings
+  },
+  textsubjects = {
+      enable = true,
+      prev_selection = ',', -- (Optional) keymap to select the previous selection
+      keymaps = {
+          ['.'] = 'textsubjects-smart',
+          [';'] = 'textsubjects-container-outer',
+          ['i;'] = 'textsubjects-container-inner',
+      },
+  }
+}
+
+require('colorizer').setup()
+
+require('nvim-treesitter.configs').setup {
+}
 EOF
 
 

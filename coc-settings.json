@@ -28,7 +28,10 @@
     "coc.preferences.formatOnSaveFiletypes": [
     "cpp",
     "php",
-    "javascript"
+    "javascript",
+    "css",
+    "scss",
+    "html"
     ],
     "imselect.defaultInput": "com.google.inputmethod.Japanese.Roman"
 }
