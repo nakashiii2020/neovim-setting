@@ -39,6 +39,8 @@ Jetpack 'airblade/vim-gitgutter'
 Jetpack 'p00f/nvim-ts-rainbow'
 Jetpack 'norcalli/nvim-colorizer.lua'
 Jetpack 'Mofiqul/vscode.nvim'
+Jetpack 'thinca/vim-quickrun', {'on': 'QuickRun'}
+Jetpack 'Shougo/vimproc.vim', {'do': 'make'}
 call jetpack#end()
 
 "設定
@@ -109,6 +111,32 @@ noremap <Down> <Nop>
 noremap <Up> <Nop>
 noremap <Right> <Nop>
 nnoremap U <c-r>
+
+nnoremap <silent><leader>r :QuickRun<CR>
+let g:quickrun_config = {}
+
+let g:quickrun_config._ = {
+    \ 'outputter/error/success': 'buffer',
+    \ 'outputter/error/error': 'quickfix',
+    \ 'outputter/quickfix/open_cmd': 'copen',
+    \ 'runner': 'vimproc',
+    \ 'runner/vimproc/updatetime': 60,
+    \ 'hook/time/enable': 1,
+    \ 'split' : 'vertical'
+    \ }
+set splitright
+
+" おまけの設定 for Python
+let g:quickrun_config.python = {
+    \ 'command': '~/.pyenv/shims/python',
+    \ 'cmdopt': '-u'
+    \ }
+
+let g:quickrun_config.cpp = {
+    \ 'command': 'g++',
+    \ 'input': 'input.txt',
+    \ 'runner': 'system'
+    \ }
 
 lua <<EOF
 require('lualine').setup {
