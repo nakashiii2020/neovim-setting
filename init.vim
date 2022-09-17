@@ -113,6 +113,7 @@ noremap <Right> <Nop>
 nnoremap U <c-r>
 
 nnoremap <silent><leader>r :QuickRun<CR>
+nnoremap <leader>o :only<CR>
 let g:quickrun_config = {}
 
 let g:quickrun_config._ = {
