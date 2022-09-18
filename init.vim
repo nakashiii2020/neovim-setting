@@ -93,25 +93,37 @@ if has("autocmd")
   autocmd FileType javascript  setlocal sw=4 sts=4 ts=4 et
 endif
 
-
+" telescope
 nnoremap <leader>ff <cmd>Telescope find_files hidden=true<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep theme=get_dropdown<cr>
 nnoremap <leader>fb <cmd>Telescope buffers theme=get_dropdown<cr>
 nnoremap <leader>fh <cmd>Telescope oldfiles theme=get_dropdown<cr>
 nnoremap <leader>gb <cmd>Telescope git_branches theme=get_dropdown<cr>
-nnoremap <C-u> 10k
-nnoremap <C-d> 10j
+
+nnoremap <C-u> 8k
+nnoremap <C-d> 8j
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
+
+" 行が折り返しても、1行ずつ移動
 noremap j gj
 noremap k gk
+
 noremap <S-h> ^
 noremap <S-l> $
+
+" redo
+nnoremap U <c-r>
+
+" forbid to use arrow keys
 noremap <Left> <Nop>
 noremap <Down> <Nop>
 noremap <Up> <Nop>
 noremap <Right> <Nop>
-nnoremap U <c-r>
+inoremap <Left> <Nop>
+inoremap <Down> <Nop>
+inoremap <Up> <Nop>
+inoremap <Right> <Nop>
 
 " 範囲検索
 vnoremap z/ <ESC>/\%V
