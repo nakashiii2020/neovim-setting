@@ -41,6 +41,7 @@ Jetpack 'norcalli/nvim-colorizer.lua'
 Jetpack 'Mofiqul/vscode.nvim'
 Jetpack 'thinca/vim-quickrun', {'on': 'QuickRun'}
 Jetpack 'Shougo/vimproc.vim', {'do': 'make'}
+Jetpack 'rmagatti/auto-session'
 call jetpack#end()
 
 "設定
