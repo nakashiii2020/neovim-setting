@@ -113,6 +113,10 @@ noremap <Up> <Nop>
 noremap <Right> <Nop>
 nnoremap U <c-r>
 
+" 範囲検索
+vnoremap z/ <ESC>/\%V
+vnoremap z? <ESC>?\%V
+
 nnoremap <silent><leader>r :QuickRun<CR>
 nnoremap <leader>o :only<CR>
 let g:quickrun_config = {}
