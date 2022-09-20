@@ -43,6 +43,7 @@ Jetpack 'thinca/vim-quickrun', {'on': 'QuickRun'}
 Jetpack 'Shougo/vimproc.vim', {'do': 'make'}
 Jetpack 'rmagatti/auto-session'
 Jetpack 'windwp/nvim-autopairs'
+Jetpack 'dkarter/bullets.vim'
 call jetpack#end()
 
 "設定
@@ -102,16 +103,15 @@ nmap <silent> gr <Plug>(coc-references)
 
 " telescope
 nnoremap <leader>ff <cmd>Telescope find_files hidden=true<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep theme=get_dropdown<cr>
-nnoremap <leader>fb <cmd>Telescope buffers theme=get_dropdown<cr>
-nnoremap <leader>fh <cmd>Telescope oldfiles theme=get_dropdown<cr>
-nnoremap <leader>gb <cmd>Telescope git_branches theme=get_dropdown<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope oldfiles<cr>
+nnoremap <leader>gb <cmd>Telescope git_branches<cr>
 
 " 日本語切り替え
 if has('mac')
   inoremap <C-j> <ESC>:call ImActivate()<CR>a
   inoremap <C-e> <ESC>:call ImInActivate()<CR>a
-  inoremap <ESC> <ESC>:call ImInActivate()<CR>
   inoremap <C-[> <ESC>:call ImInActivate()<CR>
   nnoremap <C-[> :call ImInActivate()<CR>
 
@@ -265,5 +265,19 @@ require('colorizer').setup()
 
 require("nvim-autopairs").setup {}
 
+require("scrollbar").setup({
+    show = true,
+    show_in_active_only = false,
+    set_highlights = true,
+    folds = 1000, -- handle folds, set to number to disable folds if no. of lines in buffer exceeds this
+    max_lines = false, -- disables if no. of lines in buffer exceeds this
+    handle = {
+        text = " ",
+        color = "grey",
+        cterm = nil,
+        highlight = "CursorColumn",
+        hide_if_all_visible = true, -- Hides handle if all lines are visible
+    },
+})
 EOF
 
