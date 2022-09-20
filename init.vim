@@ -100,6 +100,19 @@ nnoremap <leader>fb <cmd>Telescope buffers theme=get_dropdown<cr>
 nnoremap <leader>fh <cmd>Telescope oldfiles theme=get_dropdown<cr>
 nnoremap <leader>gb <cmd>Telescope git_branches theme=get_dropdown<cr>
 
+" 日本語切り替え
+if has('mac')
+  inoremap <C-e> <ESC>:call ImInActivate()<CR>a
+  inoremap <C-j> <ESC>:call ImActivate()<CR>a
+
+  function! ImInActivate()
+      call system("im-select 'com.google.inputmethod.Japanese.base'")
+  endfunction
+  function! ImActivate()
+      call system("im-select 'com.google.inputmethod.Japanese.Roman'")
+  endfunction
+endif
+
 nnoremap <C-u> 8k
 nnoremap <C-d> 8j
 nnoremap <silent> <C-j> :bprev<CR>
