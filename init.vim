@@ -42,6 +42,7 @@ Jetpack 'Mofiqul/vscode.nvim'
 Jetpack 'thinca/vim-quickrun', {'on': 'QuickRun'}
 Jetpack 'Shougo/vimproc.vim', {'do': 'make'}
 Jetpack 'rmagatti/auto-session'
+Jetpack 'windwp/nvim-autopairs'
 call jetpack#end()
 
 "設定
@@ -93,6 +94,12 @@ if has("autocmd")
   autocmd FileType javascript  setlocal sw=4 sts=4 ts=4 et
 endif
 
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 " telescope
 nnoremap <leader>ff <cmd>Telescope find_files hidden=true<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep theme=get_dropdown<cr>
@@ -102,13 +109,16 @@ nnoremap <leader>gb <cmd>Telescope git_branches theme=get_dropdown<cr>
 
 " 日本語切り替え
 if has('mac')
-  inoremap <C-e> <ESC>:call ImInActivate()<CR>a
   inoremap <C-j> <ESC>:call ImActivate()<CR>a
+  inoremap <C-e> <ESC>:call ImInActivate()<CR>a
+  inoremap <ESC> <ESC>:call ImInActivate()<CR>
+  inoremap <C-[> <ESC>:call ImInActivate()<CR>
+  nnoremap <C-[> :call ImInActivate()<CR>
 
-  function! ImInActivate()
+  function! ImActivate()
       call system("im-select 'com.google.inputmethod.Japanese.base'")
   endfunction
-  function! ImActivate()
+  function! ImInActivate()
       call system("im-select 'com.google.inputmethod.Japanese.Roman'")
   endfunction
 endif
@@ -253,8 +263,7 @@ require("nvim-treesitter.configs").setup {
 
 require('colorizer').setup()
 
-require('nvim-treesitter.configs').setup {
-}
-EOF
+require("nvim-autopairs").setup {}
 
+EOF
 
