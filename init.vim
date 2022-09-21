@@ -44,6 +44,8 @@ Jetpack 'Shougo/vimproc.vim', {'do': 'make'}
 Jetpack 'rmagatti/auto-session'
 Jetpack 'windwp/nvim-autopairs'
 Jetpack 'dkarter/bullets.vim'
+Jetpack 'sindrets/diffview.nvim'
+Jetpack 'APZelos/blamer.nvim'
 call jetpack#end()
 
 "設定
@@ -108,17 +110,17 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope oldfiles<cr>
 nnoremap <leader>gb <cmd>Telescope git_branches<cr>
 
-" 日本語切り替え
+" 日本語切り替
 if has('mac')
-  inoremap <C-j> <ESC>:call ImActivate()<CR>a
-  inoremap <C-e> <ESC>:call ImInActivate()<CR>a
-  inoremap <C-[> <ESC>:call ImInActivate()<CR>
-  nnoremap <C-[> :call ImInActivate()<CR>
+  inoremap <silent> <C-j> <ESC>:call ImActivate()<CR>a
+  inoremap <silent> <C-e> <ESC>:call ImDisable()<CR>a
+  inoremap <silent> <C-[> <ESC>:call ImDisable()<CR>
+  nnoremap <silent> <C-[> :call ImDisable()<CR>
 
   function! ImActivate()
       call system("im-select 'com.google.inputmethod.Japanese.base'")
   endfunction
-  function! ImInActivate()
+  function! ImDisable()
       call system("im-select 'com.google.inputmethod.Japanese.Roman'")
   endfunction
 endif
@@ -231,7 +233,11 @@ require("scrollbar").setup()
 require("scrollbar.handlers.search").setup()
 
 local neogit = require('neogit')
-neogit.setup {}
+neogit.setup {
+  integrations = {
+    diffview = true
+  }
+}
 
 
 require('Comment').setup()
