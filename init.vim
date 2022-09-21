@@ -46,6 +46,7 @@ Jetpack 'windwp/nvim-autopairs'
 Jetpack 'dkarter/bullets.vim'
 Jetpack 'sindrets/diffview.nvim'
 Jetpack 'APZelos/blamer.nvim'
+Jetpack 'rafamadriz/friendly-snippets'
 call jetpack#end()
 
 "設定
@@ -181,6 +182,7 @@ let g:quickrun_config.cpp = {
     \ 'runner': 'system'
     \ }
 
+
 lua <<EOF
 require('lualine').setup {
   options = {
@@ -285,5 +287,7 @@ require("scrollbar").setup({
         hide_if_all_visible = true, -- Hides handle if all lines are visible
     },
 })
+
+
 EOF
 
