@@ -57,12 +57,13 @@ syntax enable
 colorscheme vscode
 set termguicolors
 
-set number
-set mouse=a
-set ignorecase
-set smartcase
-set clipboard+=unnamedplus
-set cursorline
+set number                     "行番号
+set mouse=a                    "マウスを有効にする
+set ignorecase                 "大文字小文字を区別しない
+set smartcase                  "大文字がるときだけ、大文字小文字を区別する
+set clipboard+=unnamedplus     "クリップボード共有
+set cursorline                 "カーソル行をハイライト
+
 
 """""""""""""""""""""""""
 "      インデント
@@ -144,6 +145,9 @@ noremap <S-l> $
 
 " redo
 nnoremap U <c-r>
+
+" delete all
+nnoremap <silent> <leader>dd ggVGd
 
 " forbid to use arrow keys
 noremap <Left> <Nop>
