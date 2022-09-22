@@ -47,6 +47,9 @@ Jetpack 'dkarter/bullets.vim'
 Jetpack 'sindrets/diffview.nvim'
 Jetpack 'APZelos/blamer.nvim'
 Jetpack 'rafamadriz/friendly-snippets'
+Jetpack 'smjonas/snippet-converter.nvim'
+Jetpack 'honza/vim-snippets'
+Jetpack 'mtdl9/vim-log-highlighting'
 call jetpack#end()
 
 "設定
@@ -288,6 +291,21 @@ require("scrollbar").setup({
     },
 })
 
+require("snippet_converter").setup {
+  templates = {
+    {
+      -- name = "t1", (optionally give your template a name to refer to it in the `ConvertSnippets` command)
+      sources = {
+        snipmate = { "./snipmate", },
+        -- vscode = { "./vscode/cpp.json", },
+      },
+      output = {
+        ultisnips = { "./ultisnips", },
+      },
+    }
+  },
+  -- To change the default settings (see configuration section in the documentation)
+  -- settings = {},
+}
 
 EOF
-
