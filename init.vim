@@ -62,6 +62,7 @@ set mouse=a
 set ignorecase
 set smartcase
 set clipboard+=unnamedplus
+set cursorline
 
 """""""""""""""""""""""""
 "      インデント
