@@ -50,6 +50,7 @@ Jetpack 'rafamadriz/friendly-snippets'
 Jetpack 'smjonas/snippet-converter.nvim'
 Jetpack 'honza/vim-snippets'
 Jetpack 'mtdl9/vim-log-highlighting'
+Jetpack 'AndrewRadev/linediff.vim'
 call jetpack#end()
 
 "設定
