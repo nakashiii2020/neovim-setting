@@ -51,6 +51,7 @@ Jetpack 'smjonas/snippet-converter.nvim'
 Jetpack 'honza/vim-snippets'
 Jetpack 'mtdl9/vim-log-highlighting'
 Jetpack 'AndrewRadev/linediff.vim'
+Jetpack 'gbprod/yanky.nvim'
 call jetpack#end()
 
 "設定
@@ -164,6 +165,19 @@ inoremap <Right> <Nop>
 vnoremap z/ <ESC>/\%V
 vnoremap z? <ESC>?\%V
 
+" yanky.nvim
+nnoremap <silent> p <Plug>(YankyPutAfter)
+nnoremap <silent> P <Plug>(YankyPutBefore)
+nnoremap <silent> gp <Plug>(YankyGPutAfter)
+nnoremap <silent> gP <Plug>(YankyGPutBefore)
+xnoremap <silent> p <Plug>(YankyPutAfter)
+xnoremap <silent> P <Plug>(YankyPutBefore)
+xnoremap <silent> gp <Plug>(YankyGPutAfter)
+xnoremap <silent> gP <Plug>(YankyGPutBefore)
+nnoremap <silent> <C-n> <Plug>(YankyCycleForward)
+nnoremap <silent> <C-p> <Plug>(YankyCycleBackward)
+
+" quickrun
 nnoremap <silent><leader>r :QuickRun<CR>
 nnoremap <leader>o :only<CR>
 let g:quickrun_config = {}
@@ -313,5 +327,7 @@ require("snippet_converter").setup {
   -- To change the default settings (see configuration section in the documentation)
   -- settings = {},
 }
+
+require('yanky').setup()
 
 EOF
