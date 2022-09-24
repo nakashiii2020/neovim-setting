@@ -165,6 +165,12 @@ inoremap <Right> <Nop>
 vnoremap z/ <ESC>/\%V
 vnoremap z? <ESC>?\%V
 
+" vim-asterisk
+map *  <Plug>(asterisk-z*)
+map #  <Plug>(asterisk-z#)
+map g* <Plug>(asterisk-gz*)
+map g# <Plug>(asterisk-gz#)
+
 " yanky.nvim
 nnoremap <silent> p <Plug>(YankyPutAfter)
 nnoremap <silent> P <Plug>(YankyPutBefore)
