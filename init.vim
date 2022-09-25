@@ -54,6 +54,7 @@ Jetpack 'AndrewRadev/linediff.vim'
 Jetpack 'gbprod/yanky.nvim'
 Jetpack 'unblevable/quick-scope'
 Jetpack 'mfussenegger/nvim-treehopper'
+Jetpack 'David-Kunz/treesitter-unit'
 call jetpack#end()
 
 "設定
@@ -143,6 +144,11 @@ xnoremap <silent> m :lua require('tsht').nodes()<CR>
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
 highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+
+xnoremap iu :lua require"treesitter-unit".select()<CR>
+xnoremap au :lua require"treesitter-unit".select(true)<CR>
+onoremap iu :<c-u>lua require"treesitter-unit".select()<CR>
+onoremap au :<c-u>lua require"treesitter-unit".select(true)<CR>
 
 nnoremap <C-u> 8k
 nnoremap <C-d> 8j
