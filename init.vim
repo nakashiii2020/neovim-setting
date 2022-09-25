@@ -55,6 +55,7 @@ Jetpack 'gbprod/yanky.nvim'
 Jetpack 'unblevable/quick-scope'
 Jetpack 'mfussenegger/nvim-treehopper'
 Jetpack 'David-Kunz/treesitter-unit'
+Jetpack 'phaazon/hop.nvim'
 call jetpack#end()
 
 "設定
