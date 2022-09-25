@@ -53,6 +53,7 @@ Jetpack 'mtdl9/vim-log-highlighting'
 Jetpack 'AndrewRadev/linediff.vim'
 Jetpack 'gbprod/yanky.nvim'
 Jetpack 'unblevable/quick-scope'
+Jetpack 'mfussenegger/nvim-treehopper'
 call jetpack#end()
 
 "設定
@@ -133,6 +134,10 @@ if has('mac')
       call system("im-select 'com.google.inputmethod.Japanese.Roman'")
   endfunction
 endif
+
+" treehopper
+omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
+xnoremap <silent> m :lua require('tsht').nodes()<CR>
 
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
