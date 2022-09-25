@@ -52,6 +52,7 @@ Jetpack 'honza/vim-snippets'
 Jetpack 'mtdl9/vim-log-highlighting'
 Jetpack 'AndrewRadev/linediff.vim'
 Jetpack 'gbprod/yanky.nvim'
+Jetpack 'unblevable/quick-scope'
 call jetpack#end()
 
 "設定
@@ -132,6 +133,11 @@ if has('mac')
       call system("im-select 'com.google.inputmethod.Japanese.Roman'")
   endfunction
 endif
+
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 
 nnoremap <C-u> 8k
 nnoremap <C-d> 8j
