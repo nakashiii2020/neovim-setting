@@ -57,6 +57,7 @@ Jetpack 'mfussenegger/nvim-treehopper'
 Jetpack 'David-Kunz/treesitter-unit'
 Jetpack 'phaazon/hop.nvim'
 Jetpack 'aiya000/aho-bakaup.vim'
+Jetpack 'famiu/bufdelete.nvim'
 call jetpack#end()
 
 "設定
@@ -157,8 +158,15 @@ onoremap au :<c-u>lua require"treesitter-unit".select(true)<CR>
 
 nnoremap <C-u> 8k
 nnoremap <C-d> 8j
-nnoremap <silent> <C-j> :bprev<CR>
-nnoremap <silent> <C-k> :bnext<CR>
+
+" buffer
+nnoremap <silent><C-p> :BufferLineCycleNext<CR>
+nnoremap <silent><C-n> :BufferLineCyclePrev<CR>
+nnoremap <silent> <leader>w <cmd>Bdelete<CR>
+
+" indent continuation
+vnoremap < <gv
+vnoremap > >gv
 
 " 行が折り返しても、1行ずつ移動
 noremap j gj
@@ -205,8 +213,8 @@ xnoremap <silent> p <Plug>(YankyPutAfter)
 xnoremap <silent> P <Plug>(YankyPutBefore)
 xnoremap <silent> gp <Plug>(YankyGPutAfter)
 xnoremap <silent> gP <Plug>(YankyGPutBefore)
-nnoremap <silent> <C-n> <Plug>(YankyCycleForward)
-nnoremap <silent> <C-p> <Plug>(YankyCycleBackward)
+nnoremap <silent> <leader>n <Plug>(YankyCycleForward)
+nnoremap <silent> <leader>p <Plug>(YankyCycleBackward)
 
 " quickrun
 nnoremap <silent><leader>r :QuickRun<CR>
