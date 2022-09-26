@@ -56,6 +56,7 @@ Jetpack 'unblevable/quick-scope'
 Jetpack 'mfussenegger/nvim-treehopper'
 Jetpack 'David-Kunz/treesitter-unit'
 Jetpack 'phaazon/hop.nvim'
+Jetpack 'aiya000/aho-bakaup.vim'
 call jetpack#end()
 
 "設定
@@ -86,6 +87,9 @@ set softtabstop=0       "キーボードから入るタブの数
 
 let mapleader = "\<Space>"
 let g:im_select_default = 'com.google.inputmethod.Japanese.Roman'
+
+" bakaup
+let g:bakaup_auto_backup = 1
 
 if has("autocmd")
   "ファイルタイプの検索を有効にする
@@ -124,10 +128,10 @@ nnoremap <leader>gb <cmd>Telescope git_branches<cr>
 
 " 日本語切り替
 if has('mac')
-  inoremap <silent> <C-j> <ESC>:call ImActivate()<CR>a
-  inoremap <silent> <C-e> <ESC>:call ImDisable()<CR>a
-  inoremap <silent> <C-[> <ESC>:call ImDisable()<CR>
-  nnoremap <silent> <C-[> :call ImDisable()<CR>
+  inoremap <silent> <C-j> <cmd>call ImActivate()<CR>
+  inoremap <silent> <C-e> <cmd>call ImDisable()<CR>
+  inoremap <silent> <C-[> <ESC><cmd>call ImDisable()<CR>
+  nnoremap <silent> <C-[> <cmd>call ImDisable()<CR>
 
   function! ImActivate()
       call system("im-select 'com.google.inputmethod.Japanese.base'")
@@ -167,7 +171,7 @@ noremap <S-l> $
 nnoremap U <c-r>
 
 " delete all
-nnoremap <silent> <leader>dd ggVGd
+nnoremap <silent> <leader>va ggVG
 
 " forbid to use arrow keys
 noremap <Left> <Nop>
