@@ -167,6 +167,9 @@ noremap k gk
 noremap <S-h> ^
 noremap <S-l> $
 
+nnoremap + <C-a>
+nnoremap - <C-x>
+
 " redo
 nnoremap U <c-r>
 
