@@ -265,6 +265,7 @@ let g:quickrun_config.python = {
 
 let g:quickrun_config.cpp = {
     \ 'command': 'g++',
+    \ 'cmdopt': '-std=c++17 -Wall -O2',
     \ 'input': 'input.txt',
     \ 'runner': 'system'
     \ }
