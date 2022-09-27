@@ -58,6 +58,7 @@ Jetpack 'David-Kunz/treesitter-unit'
 Jetpack 'phaazon/hop.nvim'
 Jetpack 'aiya000/aho-bakaup.vim'
 Jetpack 'famiu/bufdelete.nvim'
+Jetpack 'haya14busa/vim-edgemotion'
 call jetpack#end()
 
 "設定
@@ -159,10 +160,18 @@ onoremap au :<c-u>lua require"treesitter-unit".select(true)<CR>
 nnoremap <C-u> 8k
 nnoremap <C-d> 8j
 
+" eadgemotion
+map <C-j> <Plug>(edgemotion-j)
+map <C-k> <Plug>(edgemotion-k)
+
 " buffer
 nnoremap <silent><C-p> :BufferLineCycleNext<CR>
 nnoremap <silent><C-n> :BufferLineCyclePrev<CR>
 nnoremap <silent> <leader>w <cmd>Bdelete<CR>
+
+" hop
+nnoremap <silent> <leader>h <cmd>HopWord<CR>
+xnoremap <silent> <leader>h <cmd>HopWord<CR>
 
 " indent continuation
 vnoremap < <gv
@@ -368,5 +377,7 @@ require("snippet_converter").setup {
 }
 
 require('yanky').setup()
+
+require('hop').setup()
 
 EOF
