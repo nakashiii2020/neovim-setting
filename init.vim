@@ -147,7 +147,7 @@ nnoremap <leader>gb <cmd>Telescope git_branches<cr>
 " 日本語切り替
 if has('mac')
   inoremap <silent> <C-j> <cmd>call ImActivate()<CR>
-  inoremap <silent> <C-e> <cmd>call ImDisable()<CR>
+  inoremap <silent> <C-;> <cmd>call ImDisable()<CR>
   inoremap <silent> <C-[> <ESC><cmd>call ImDisable()<CR>
   nnoremap <silent> <C-[> <cmd>call ImDisable()<CR>
 
@@ -175,6 +175,9 @@ onoremap au :<c-u>lua require"treesitter-unit".select(true)<CR>
 
 nnoremap <C-u> 8k
 nnoremap <C-d> 8j
+
+" insert line-end
+inoremap <C-e> <Esc>A
 
 " eadgemotion
 map <C-j> <Plug>(edgemotion-j)
