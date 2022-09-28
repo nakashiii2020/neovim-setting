@@ -183,6 +183,8 @@ map <C-k> <Plug>(edgemotion-k)
 " buffer
 nnoremap <silent><C-p> :BufferLineCycleNext<CR>
 nnoremap <silent><C-n> :BufferLineCyclePrev<CR>
+nnoremap <silent> <leader>bp <cmd>BufferLinePick<CR>
+nnoremap <silent> <leader>bs <cmd>BufferLineSortByDirectory<CR>
 nnoremap <silent> <leader>w <cmd>Bdelete<CR>
 
 " hop
@@ -313,7 +315,14 @@ require('lualine').setup {
   extensions = {}
 }
 
-require("bufferline").setup{}
+require("bufferline").setup {
+  options = {
+    indicator = {
+        icon = '▎',
+        style = 'underline'
+    }
+  }
+}
 
 local sidebar = require("sidebar-nvim")
 
