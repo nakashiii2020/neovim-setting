@@ -380,7 +380,10 @@ require("nvim-treesitter.configs").setup {
 
 require('colorizer').setup()
 
-require("nvim-autopairs").setup {}
+require("nvim-autopairs").setup {
+  map_c_h = true,  -- Map the <C-h> key to delete a pair
+  map_c_w = true, -- map <c-w> to delete a pair if possible
+}
 
 require("scrollbar").setup({
     show = true,
@@ -417,5 +420,6 @@ require("snippet_converter").setup {
 require('yanky').setup()
 
 require('hop').setup()
+
 
 EOF
