@@ -190,6 +190,15 @@ nnoremap <silent> <leader>bp <cmd>BufferLinePick<CR>
 nnoremap <silent> <leader>bs <cmd>BufferLineSortByDirectory<CR>
 nnoremap <silent> <leader>w <cmd>Bdelete<CR>
 
+" window 操作
+nnoremap <silent> ss <C-w>s
+nnoremap <silent> sv <C-w>v
+nnoremap <silent> s= <C-w>=
+nnoremap sh <C-w>h 
+nnoremap sj <C-w>j 
+nnoremap sk <C-w>k 
+nnoremap sl <C-w>l 
+
 " hop
 nnoremap <silent> <leader>m <cmd>HopWord<CR>
 xnoremap <silent> <leader>m <cmd>HopWord<CR>
