@@ -191,8 +191,8 @@ nnoremap <silent> <leader>bs <cmd>BufferLineSortByDirectory<CR>
 nnoremap <silent> <leader>w <cmd>Bdelete<CR>
 
 " hop
-nnoremap <silent> <leader>h <cmd>HopWord<CR>
-xnoremap <silent> <leader>h <cmd>HopWord<CR>
+nnoremap <silent> <leader>m <cmd>HopWord<CR>
+xnoremap <silent> <leader>m <cmd>HopWord<CR>
 
 " indent continuation
 vnoremap < <gv
@@ -212,7 +212,7 @@ nnoremap - <C-x>
 nnoremap U <c-r>
 
 " delete all
-nnoremap <silent> <leader>va ggVG
+nnoremap <silent> <leader>a ggVG
 
 " forbid to use arrow keys
 noremap <Left> <Nop>
