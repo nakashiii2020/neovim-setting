@@ -88,7 +88,6 @@ set shiftwidth=2        "自動インデントで入る空白数
 set softtabstop=0       "キーボードから入るタブの数
 
 let mapleader = "\<Space>"
-let g:im_select_default = 'com.google.inputmethod.Japanese.Roman'
 
 " bakaup
 let g:bakaup_auto_backup = 1
