@@ -92,6 +92,9 @@ let mapleader = "\<Space>"
 " bakaup
 let g:bakaup_auto_backup = 1
 
+" enable blamer.nvim 
+let g:blamer_enabled = 1
+
 if has("autocmd")
   "ファイルタイプの検索を有効にする
   filetype plugin on
@@ -113,6 +116,14 @@ if has("autocmd")
   autocmd FileType sass        setlocal sw=4 sts=4 ts=4 et
   autocmd FileType javascript  setlocal sw=4 sts=4 ts=4 et
 endif
+
+" terminal mode------------------------------------------
+" Ctrl + q でターミナルを終了
+tnoremap <C-q> <C-\><C-n>:q<CR>
+" ESCでターミナルモードからノーマルモードへ
+tnoremap <C-[> <C-\><C-n>
+" terminal mode------------------------------------------
+
 
 "coc.nvim --------------------------------------------------
 " GoTo code navigation.
