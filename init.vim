@@ -59,11 +59,24 @@ Jetpack 'phaazon/hop.nvim'
 Jetpack 'aiya000/aho-bakaup.vim'
 Jetpack 'famiu/bufdelete.nvim'
 Jetpack 'haya14busa/vim-edgemotion'
+Jetpack 'yssl/QFEnter'
+Jetpack 'kevinhwang91/nvim-bqf'
+Jetpack 'vim-scripts/dbext.vim'
+Jetpack 'vim-denops/denops.vim'
+Jetpack 'vim-denops/denops-helloworld.vim'
+Jetpack 'vim-skk/skkeleton'
+Jetpack 'Shougo/ddc.vim'
+Jetpack 'Shougo/ddc-ui-native'
+Jetpack 'Shougo/ddc-matcher_head'
+Jetpack 'Shougo/ddc-sorter_rank'
+Jetpack 'Shougo/ddc-source-around'
+" Jetpack 'Shougo/pum.vim'
+Jetpack 'kat0h/bufpreview.vim', { 'do': 'deno task prepare' }
 call jetpack#end()
 
 "設定
 syntax enable
-colorscheme vscode
+colorscheme nightfox
 set termguicolors
 
 set number                     "行番号
@@ -86,6 +99,8 @@ set expandtab           "タブ入力を複数の空白に置き換える
 set tabstop=2           "タブを含むファイルを開いた際, タブを何文字の空白に変換するか
 set shiftwidth=2        "自動インデントで入る空白数
 set softtabstop=0       "キーボードから入るタブの数
+set foldmethod=indent   "インデントによる折りたたみ
+set foldlevel=99       "折りたたみレベル
 
 let mapleader = "\<Space>"
 
@@ -94,6 +109,11 @@ let g:bakaup_auto_backup = 1
 
 " enable blamer.nvim 
 let g:blamer_enabled = 1
+
+let g:copilot_enabled = true
+
+" for markdown. list style
+let g:bullets_outline_levels = ['num', 'abc', 'std-']
 
 if has("autocmd")
   "ファイルタイプの検索を有効にする
@@ -104,6 +124,7 @@ if has("autocmd")
   autocmd FileType c           setlocal sw=4 sts=4 ts=4 et
   autocmd FileType html        setlocal sw=4 sts=4 ts=4 et
   autocmd FileType php         setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType sql         setlocal sw=4 sts=4 ts=4 et
   autocmd FileType ruby        setlocal sw=2 sts=2 ts=2 et
   autocmd FileType js          setlocal sw=4 sts=4 ts=4 et
   autocmd FileType zsh         setlocal sw=4 sts=4 ts=4 et
@@ -124,6 +145,8 @@ tnoremap <C-q> <C-\><C-n>:q<CR>
 tnoremap <C-[> <C-\><C-n>
 " terminal mode------------------------------------------
 
+" reload init.vim
+nnoremap <leader>rr :source $MYVIMRC<CR>
 
 "coc.nvim --------------------------------------------------
 " GoTo code navigation.
@@ -152,22 +175,14 @@ nnoremap <leader>ff <cmd>Telescope find_files hidden=true<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope oldfiles<cr>
-nnoremap <leader>gb <cmd>Telescope git_branches<cr>
+nnoremap <leader>fq <cmd>Telescope quickfix<cr>
 
-" 日本語切り替
-if has('mac')
-  inoremap <silent> <C-j> <cmd>call ImActivate()<CR>
-  inoremap <silent> <C-;> <cmd>call ImDisable()<CR>
-  inoremap <silent> <C-[> <ESC><cmd>call ImDisable()<CR>
-  nnoremap <silent> <C-[> <cmd>call ImDisable()<CR>
-
-  function! ImActivate()
-      call system("im-select 'com.google.inputmethod.Japanese.base'")
-  endfunction
-  function! ImDisable()
-      call system("im-select 'com.google.inputmethod.Japanese.Roman'")
-  endfunction
-endif
+" QFEnter
+let g:qfenter_keymap = {}
+let g:qfenter_keymap.open = ['<CR>', '<2-LeftMouse>']
+let g:qfenter_keymap.vopen = ['<Leader>qv']
+let g:qfenter_keymap.hopen = ['<Leader>qh']
+let g:qfenter_keymap.topen = ['<Leader>qt']
 
 " treehopper
 omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
@@ -185,6 +200,8 @@ onoremap au :<c-u>lua require"treesitter-unit".select(true)<CR>
 
 nnoremap <C-u> 8k
 nnoremap <C-d> 8j
+xnoremap <C-u> 8k
+xnoremap <C-d> 8j
 
 " insert line-end
 inoremap <C-e> <Esc>A
@@ -192,6 +209,47 @@ inoremap <C-e> <Esc>A
 " eadgemotion
 map <C-j> <Plug>(edgemotion-j)
 map <C-k> <Plug>(edgemotion-k)
+
+" skk
+imap <C-j> <Plug>(skkeleton-toggle)
+cmap <C-j> <Plug>(skkeleton-toggle)
+call skkeleton#config(#{
+  \   eggLikeNewline: v:true,
+  \   globalJisyo: "/Users/nakashima/.skk/SKK-JISYO.L",
+  \ })
+
+" ddc
+call ddc#custom#patch_global('sourceOptions', {
+    \   '_': {
+    \     'matchers': ['matcher_head'],
+    \     'sorters': ['sorter_rank']
+    \   },
+    \   'skkeleton': {
+    \     'mark': 'skkeleton',
+    \     'matchers': ['skkeleton'],
+    \     'sorters': [],
+    \     'minAutoCompleteLength': 2,
+    \   },
+    \ })
+call ddc#enable()
+
+function! s:skkeleton_enable_pre()
+  let s:prev_buffer_config = ddc#custom#get_buffer()
+  call ddc#custom#patch_buffer({
+        \ 'ui': 'native',
+        \ 'sources': ['skkeleton'],
+        \ })
+endfunction
+
+function! s:skkeleton_disable_pre()
+  call ddc#custom#set_buffer(prev_buffer_config)
+endfunction
+
+augroup skkeleton
+  autocmd!
+  autocmd User skkeleton-enable-pre call s:skkeleton_enable_pre()
+  autocmd User skkeleton-disable-pre  call s:skkeleton_disable_pre()
+augroup END
 
 " buffer
 nnoremap <silent><C-p> :BufferLineCycleNext<CR>
@@ -385,7 +443,8 @@ require("nvim-treesitter.configs").setup {
           [';'] = 'textsubjects-container-outer',
           ['i;'] = 'textsubjects-container-inner',
       },
-  }
+  },
+  ensure_installed = 'all', -- :TSInstall allと同じ
 }
 
 require('colorizer').setup()
@@ -431,5 +490,71 @@ require('yanky').setup()
 
 require('hop').setup()
 
+require('bqf').setup()
+
+require("todo-comments").setup {
+  signs = true, -- show icons in the signs column
+  sign_priority = 8, -- sign priority
+  -- keywords recognized as todo comments
+  keywords = {
+    FIX = {
+      icon = " ", -- icon used for the sign, and in search results
+      color = "error", -- can be a hex color, or a named color (see below)
+      alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+      -- signs = false, -- configure signs for some keywords individually
+    },
+    TODO = { icon = " ", color = "#D9AA66" },
+    HACK = { icon = " ", color = "warning" },
+    WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+    PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+    NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+    TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+  },
+  gui_style = {
+    fg = "NONE", -- The gui style to use for the fg highlight group.
+    bg = "BOLD", -- The gui style to use for the bg highlight group.
+  },
+  merge_keywords = true, -- when true, custom keywords will be merged with the defaults
+  -- highlighting of the line containing the todo comment
+  -- * before: highlights before the keyword (typically comment characters)
+  -- * keyword: highlights of the keyword
+  -- * after: highlights after the keyword (todo text)
+  highlight = {
+    multiline = true, -- enable multine todo comments
+    multiline_pattern = "^.", -- lua pattern to match the next multiline from the start of the matched keyword
+    multiline_context = 10, -- extra lines that will be re-evaluated when changing a line
+    before = "", -- "fg" or "bg" or empty
+    keyword = "wide", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
+    after = "fg", -- "fg" or "bg" or empty
+    pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlightng (vim regex)
+    comments_only = true, -- uses treesitter to match keywords in comments only
+    max_line_len = 400, -- ignore lines longer than this
+    exclude = {}, -- list of file types to exclude highlighting
+  },
+  -- list of named colors where we try to extract the guifg from the
+  -- list of highlight groups or use the hex color if hl not found as a fallback
+  colors = {
+    error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
+    warning = { "DiagnosticWarning", "WarningMsg", "#D9AA66" },
+    info = { "DiagnosticInfo", "#2563EB" },
+    hint = { "DiagnosticHint", "#10B981" },
+    default = { "Identifier", "#7C3AED" },
+    test = { "Identifier", "#FF00FF" }
+  },
+  search = {
+    command = "rg",
+    args = {
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+    },
+    -- regex that will be used to match keywords.
+    -- don't replace the (KEYWORDS) placeholder
+    pattern = [[\b(KEYWORDS):]], -- ripgrep regex
+    -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
+  },
+}
 
 EOF
